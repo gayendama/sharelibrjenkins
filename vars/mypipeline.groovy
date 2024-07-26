@@ -1,8 +1,5 @@
 def call() {
-    stage('Checkout') {
-        checkout scm
-    }
-
+    
     def p = pipelineConfig()
 
     stage('Auto discovery') {
