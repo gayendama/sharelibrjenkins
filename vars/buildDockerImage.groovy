@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
 
-def call(String param) {
-    sh "sudo docker build -t ndamagaye268/${param}:latest ."
+def call(String IMAGE_NAME) {
+    sh "sudo docker build -t ndamagaye268/${IMAGE_NAME}:latest ."
 }
