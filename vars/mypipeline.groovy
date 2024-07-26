@@ -11,7 +11,7 @@ def call() {
     }
 
     stage ('Build docker images') {
-            buildDockerImage p.IMAGE_NAME
+            buildDockerImage IMAGE_NAME.IMAGE_NAME
         }
 
 }
