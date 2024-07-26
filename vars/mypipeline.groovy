@@ -1,8 +1,9 @@
 def call() {
+    node {
     stage('Checkout') {
         checkout scm
     }
-
+    
     def p = pipelineConfig()
 
     stage('Auto discovery') {
@@ -10,7 +11,8 @@ def call() {
     }
 
     stage ('Build docker images') {
-            buildDockerImage p.IMAGE_NAME
+            buildDockerImage(p.IMAGE_NAME, p.DOCKER_ID)
         }
 
+}
 }
