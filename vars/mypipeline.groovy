@@ -15,7 +15,7 @@ def call() {
     }
 <<<<<<< HEAD
     stage ('test d'acceptence') {
-            testAcceptance(p.IMAGE_NAME, p.DOCKER_ID, p.PortApp, p.PortContainer)
+            testAcceptance(p.IMAGE_NAME, p.DOCKER_ID, p.PortContainer, p.PortApp)
    }
    stage('Run JMeter Tests') {
                 steps {
