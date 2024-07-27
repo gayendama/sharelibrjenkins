@@ -13,7 +13,6 @@ def call() {
     stage ('Build docker images') {
             buildDockerImage(p.IMAGE_NAME, p.DOCKER_ID)
     }
-<<<<<<< HEAD
     stage ('test d'acceptence') {
             testAcceptance(p.IMAGE_NAME, p.DOCKER_ID, p.PortContainer, p.PortApp)
    }
