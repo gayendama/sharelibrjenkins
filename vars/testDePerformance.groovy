@@ -5,5 +5,4 @@ def testDePerformance() {
    perfReport 'results.jtl'
 }
 
-
         
