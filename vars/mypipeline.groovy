@@ -11,7 +11,7 @@ def call() {
         autoDiscovery(p)
     }
     stage ('Aws auth') {
-            sh 'echo ID_DOCKER | docker login -u ndamagaye268  --password-stdin'
+            sh 'sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
     }
 
 
