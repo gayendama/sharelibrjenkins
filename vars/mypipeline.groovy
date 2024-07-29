@@ -10,11 +10,6 @@ def call() {
     stage('Auto discovery') {
         autoDiscovery(p)
     }
-    stage ('Aws auth') {
-            sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-    }
-
-
     stage ('Build docker images') {
             buildDockerImage(p.IMAGE_NAME, p.DOCKER_ID)
     }
