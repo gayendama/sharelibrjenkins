@@ -22,7 +22,7 @@ def call() {
         }
 
     stage('Scan vurlnerablite') {
-           scanVulnerabilities p.IMAGE_NAME
+           scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
         }
     stage('Cleanup') {
            Cleanup p.IMAGE_NAME
