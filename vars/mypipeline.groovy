@@ -19,6 +19,11 @@ def call() {
    }
    stage('Run JMeter Tests') {
            testDePerformance()
-        }       
+        }
+
+    stage('Scan vurlnerablite') {
+           scanVulnerabilities p.IMAGE_NAME
+        }
+       
     }
 }
