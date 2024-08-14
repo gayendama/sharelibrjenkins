@@ -4,7 +4,7 @@ def call (String param1, String param2) {
     sh "trivy image --no-progress --exit-code 0 --format json --output trivy_report.json --severity HIGH ${param1}/${param2}:latest"
     archiveArtifacts artifacts: 'trivy_report.json', allowEmptyArchive: true
 
-    Publier le rapport Trivy en tant que rapport HTML
+  //  Publier le rapport Trivy en tant que rapport HTML
     publishHTML(target: [
         allowMissing: false,
         keepAll: true,
