@@ -21,6 +21,7 @@ def call() {
         }
     stage('Run Functional Tests with SoapUI') {
            runSoapUITests()
+        }  
 
     stage('Scan vurlnerablite') {
            scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
