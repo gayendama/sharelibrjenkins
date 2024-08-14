@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-def runSoapUITests() {    
+def call() {    
     sh '''               
         # Exécuter les tests SoapUI
         /opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -s"CalculatorTestSuite" -c"AdditionTestCase"  calculator-soapui-project.xml
