@@ -6,7 +6,7 @@ def call() {
 
      if (jmxFile) {
         echo "Fichier .jmx trouvé : ${jmxFile}"
-        sh "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${appDir}${jmxFile} -l results.jtl"
+        sh "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${jmxFile} -l results.jtl"
         perfReport 'results.jtl'
     } else {
         echo "Aucun fichier .jmx trouvé dans le répertoire ${appDir}, aucun test ne sera exécuté."
