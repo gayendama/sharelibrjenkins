@@ -1,9 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
-    def appDir = '${env.WORKSPACE}/" 
-    def jmxFile = ''
-
-    // Rechercher un fichier .jmx dans le répertoire de l'application
+    def appDir = "${env.WORKSPACE}/" 
+   
     def jmxFile = sh(script: "ls ${appDir}*.jmx | head -n 1", returnStdout: true).trim()
 
      if (jmxFile) {
