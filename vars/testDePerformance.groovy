@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 def call() {
-    def appDir = '/var/lib/jenkins/workspace/testperfomance/' 
+    def appDir = '${env.WORKSPACE}/" 
     def jmxFile = ''
 
     // Rechercher un fichier .jmx dans le répertoire de l'application
