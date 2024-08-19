@@ -4,10 +4,9 @@ def call() {
     def jmxFile = ''
 
     // Rechercher un fichier .jmx dans le répertoire de l'application
-    def files = new File(appDir).listFiles().find { it.name.endsWith('.jmx') }
+    def jmxFile = sh(script: "ls ${appDir}*.jmx | head -n 1", returnStdout: true).trim()
 
-    if (files) {
-        jmxFile = files.name
+     if (jmxFile) {
         echo "Fichier .jmx trouvé : ${jmxFile}"
         sh "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${appDir}${jmxFile} -l results.jtl"
         perfReport 'results.jtl'
