@@ -1,10 +1,14 @@
 #!/usr/bin/env groovy
-def call() {    
-    sh '''               
-        # Exécuter les tests SoapUI
-        /opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -s"CalculatorTestSuite" -c"AdditionTestCase"  calculator-soapui-project.xml
-    '''
-    
-    // Archiver les résultats de SoapUI
-    archiveArtifacts artifacts: 'test_soapui/results/**/*', allowEmptyArchive: true
+def call() {
+    def appDir = "${env.WORKSPACE}/" 
+    def resultsDir = "${appDir}soapui-reports/"
+
+    // Créer le répertoire pour les rapports s'il n'existe pas
+    sh "mkdir -p ${resultsDir}"
+
+    // Exécuter SoapUI et générer les rapports HTML
+    sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -f ${resultsDir} calculator-soapui-project.xml"
+
+    // Archiver les rapports
+    archiveArtifacts artifacts: "${resultsDir}**/*", allowEmptyArchive: true
 }
