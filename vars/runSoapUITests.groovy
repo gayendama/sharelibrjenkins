@@ -7,7 +7,7 @@ def call() {
     sh "mkdir -p ${resultsDir}"
 
     // Exécuter SoapUI et générer les rapports HTML
-    sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -f ${resultsDir} calculator-soapui-project.xml"
+    sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -I -a -d ${resultsDir} calculator-soapui-project.xml"
 
     // Archiver les rapports
     archiveArtifacts artifacts: "${resultsDir}**/*", allowEmptyArchive: true
