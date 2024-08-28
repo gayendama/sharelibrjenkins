@@ -11,7 +11,7 @@ def call() {
     publishHTML(target: [
         allowMissing: false,
         keepAll: true,
-        reportDir: "${resultsDir}",
+        reportDir: '${resultsDir}',
         reportFiles: '*.xml',
         reportName: 'Rapport de Test Soapui'
     ])
