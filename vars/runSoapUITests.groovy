@@ -7,11 +7,11 @@ def call() {
     sh "mkdir -p ${resultsDir}"
 
     // Exécuter SoapUI et générer les rapports HTML
-    sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j  -d ${resultsDir}   calculator-soapui-project.xml"
+    sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j  -d ${resultsDir}/html-reports/   calculator-soapui-project.xml"
     publishHTML(target: [
         allowMissing: false,
         keepAll: true,
-        reportDir: '${resultsDir}',
+        reportDir: "${resultsDir}/html-reports/",
         reportFiles: '*.xml',
         reportName: 'Rapport de Test Soapui'
     ])
