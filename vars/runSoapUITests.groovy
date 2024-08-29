@@ -11,8 +11,8 @@ def call() {
     publishHTML(target: [
         allowMissing: false,
         keepAll: true,
-        reportDir: 'test_soapui',
-        reportFiles: '*index.html',
+        reportDir: '${resultsDir}',
+        reportFiles: 'index.html',
         reportName: 'Rapport de Test Soapui'
     ])
     // Archiver les rapports
