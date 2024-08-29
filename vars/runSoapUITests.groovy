@@ -12,7 +12,7 @@ def call() {
         allowMissing: false,
         keepAll: true,
         reportDir: "${resultsDir}",
-        reportFiles: '*.xml',
+        reportFiles: 'TEST-CalculatorTestSuite.xml',
         reportName: 'Rapport de Test Soapui'
     ])
     // Archiver les rapports
