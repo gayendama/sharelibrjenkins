@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
     def appDir = "${env.WORKSPACE}/" 
-    def resultsDir = "${appDir}soapui-reports/"
+    def resultsDir = "${appDir}soapui-reports"
 
     // Créer le répertoire pour les rapports s'il n'existe pas
     sh "mkdir -p ${resultsDir}"
