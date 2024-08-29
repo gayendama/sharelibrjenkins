@@ -16,5 +16,5 @@ def call() {
         reportName: 'Rapport de Test Soapui'
     ])
     // Archiver les rapports
-    archiveArtifacts artifacts: "${resultsDir}**/*", allowEmptyArchive: true
+  //  archiveArtifacts artifacts: "${resultsDir}"/*.xml", allowEmptyArchive: true
 }
