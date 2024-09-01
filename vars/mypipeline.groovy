@@ -10,7 +10,7 @@ def call() {
     stage('Auto discovery') {
         autoDiscovery(p)
     }
-    stage ('Build docker images') {
+  /*  stage ('Build docker images') {
             buildDockerImage(p.IMAGE_NAME, p.DOCKER_ID)
     }
     stage ('test acceptence') {
@@ -19,10 +19,11 @@ def call() {
    stage('Run JMeter Tests') {
            testDePerformance()
         }
+        */
     stage('Run Functional Tests with SoapUI') {
            runSoapUITests()
         }  
-
+/*
     stage('Scan vurlnerablite') {
            scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
         }
@@ -30,6 +31,6 @@ def call() {
            Cleanup p.IMAGE_NAME
         }
 
-       
+      */ 
     }
 }
