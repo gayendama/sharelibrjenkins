@@ -8,7 +8,7 @@ def call() {
     sh "mkdir -p ${resultsDir}"
     // Vérifier si le répertoire de tests existe
     if (!fileExists(soapuiDir)) {
-       echo "Le répertoire des tests SoapUI ${soapuiDir} n'existe pas."
+       echo "Le répertoire des tests SoapUI ${soapuiDir} n'existe pas aucun test sera effectué."
         return
         
     }    
