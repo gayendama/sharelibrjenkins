@@ -27,7 +27,7 @@ def call() {
             currentBuild.result = 'ABORTED'
         }
     }
-        }  
+          
 /*
     stage('Scan vurlnerablite') {
            scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
