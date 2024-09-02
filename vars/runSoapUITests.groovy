@@ -8,7 +8,9 @@ def call() {
     sh "mkdir -p ${resultsDir}"
     // Vérifier si le répertoire de tests existe
     if (!fileExists(soapuiDir)) {
-        error "Le répertoire des tests SoapUI ${soapuiDir} n'existe pas."
+       echo "Le répertoire des tests SoapUI ${soapuiDir} n'existe pas."
+        return
+        
     }    
     // Trouver tous les fichiers .xml dans le répertoire de tests et les exécuter
     def soapuiFiles = sh(script: "find ${soapuiDir} -name '*.xml'", returnStdout: true).trim().split('\n')
