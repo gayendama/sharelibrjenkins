@@ -18,6 +18,10 @@ def call() {
    }
            */
     stage('Run Functional Tests with SoapUI') {
+        when {
+                expression {
+                    return fileExists("${env.WORKSPACE}/testsoapui") && sh(script: "find ${env.WORKSPACE}/testsoapui -name '*.xml'", returnStatus: true) == 0
+                }
           def testsRun = runSoapUITests()
         if (!testsRun) {
             echo "Les tests SoapUI n'ont pas été exécutés, le stage est marqué comme désactivé."
