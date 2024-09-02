@@ -1,7 +1,20 @@
 #!/usr/bin/env groovy
 def call() {
     def appDir = "${env.WORKSPACE}/" 
-     def jmxDir = "${appDir}/testjmeter"
+    def appDir = "${env.WORKSPACE}/" 
+   
+    def jmxFile = sh(script: "ls ${appDir}*.jmx | head -n 1", returnStdout: true).trim()
+
+     if (jmxFile) {
+        echo "Fichier .jmx trouvé : ${jmxFile}"
+        sh "sudo /opt/apache-jmeter-5.6.3/bin/jmeter  -n -t ${jmxFile} -l results.jtl"
+        perfReport 'results.jtl'
+    } else {
+        echo "Aucun fichier .jmx trouvé dans le répertoire ${appDir}, aucun test ne sera exécuté."
+    }
+ 
+    /*
+    def jmxDir = "${appDir}/testjmeter"
 
     // Vérifier si le répertoire de tests existe
     if (!fileExists(jmxDir)) {
@@ -21,4 +34,5 @@ def call() {
         // Générer un rapport de performance
         perfReport "results.jtl"
     }
+    */
 }
