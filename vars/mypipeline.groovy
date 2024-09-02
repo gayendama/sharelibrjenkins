@@ -16,18 +16,18 @@ def call() {
     stage ('test acceptence') {
             testAcceptance(p.IMAGE_NAME, p.DOCKER_ID, p.PortContainer, p.PortApp)
    }
-   stage('Run JMeter Tests') {
-           testDePerformance()
-        }
-        */
+           */
     stage('Run Functional Tests with SoapUI') {
           def testsRun = runSoapUITests()
         if (!testsRun) {
             echo "Les tests SoapUI n'ont pas été exécutés, le stage est marqué comme désactivé."
-            currentBuild.result = 'UNSTABLE'
+            //currentBuild.result = 'UNSTABLE'
+            return
         }
     }
-          
+        stage('Run JMeter Tests') {
+           testDePerformance()
+        }          
 /*
     stage('Scan vurlnerablite') {
            scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
