@@ -27,14 +27,14 @@ def call() {
             
         }
     } 
-    stage('deploy') {
-        if (testsRun) {
-                    echo "Déploiement en cours..."
-                    // Code de déploiement ici
-                } else {
-                    echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
-                }
-    }
+    if (testsRun) {
+            stage('deploy') {
+                echo "Déploiement en cours..."
+                // Code de déploiement ici
+            }
+        } else {
+            echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
+        }
    // stage('Run JMeter Tests') {
      // testDePerformance()
     // }          
