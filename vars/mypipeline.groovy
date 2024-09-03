@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
     node {
+        def testsRun = false
     stage('Checkout') {
         checkout scm
     }
