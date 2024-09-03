@@ -19,7 +19,7 @@ def call() {
    }
            */
     stage('Run Functional Tests with SoapUI') {
-        def testsRun = runSoapUITests()
+          testsRun = runSoapUITests()
         if (!testsRun) {
             echo "Les tests SoapUI n'ont pas été exécutés, le stage est marqué comme désactivé."
             currentBuild.result = 'UNSTABLE'
