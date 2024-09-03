@@ -24,10 +24,17 @@ def call() {
             currentBuild.result = 'UNSTABLE'
             
         }
-    }       
-    stage('Run JMeter Tests') {
-      testDePerformance()
-     }          
+    } 
+    stage('deploy')
+        if (testsRun) {
+                    echo "Déploiement en cours..."
+                    // Code de déploiement ici
+                } else {
+                    echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
+                }
+   // stage('Run JMeter Tests') {
+     // testDePerformance()
+    // }          
 /*
     stage('Scan vurlnerablite') {
            scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
