@@ -34,6 +34,7 @@ def call() {
       steps {
           echo "deploiment"
         }
+        }
     if (testsRun) {
             stage('deploy') {
                 echo "Déploiement en cours..."
