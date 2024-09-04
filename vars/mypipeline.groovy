@@ -27,14 +27,13 @@ def call() {
             
         }
     } 
-        stage('Deploy...........'){
-            when {
-        expression { false }  //disable this stage
-      }
-      steps {
-          echo "deploiment"
+        stage('Deploy') {
+        if (false) {  // Désactive cette étape en mettant la condition à false
+            echo "Déploiement"
+        } else {
+            echo "Étape de déploiement ignorée."
         }
-        }
+    }
     if (testsRun) {
             stage('deploy') {
                 echo "Déploiement en cours..."
