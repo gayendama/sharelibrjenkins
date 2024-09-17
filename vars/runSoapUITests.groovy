@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
     def appDir = "${env.WORKSPACE}/" 
-    def resultsDir = "${appDir}soapui-reports"
+    def resultsDir = "/home/ndama/soapui-reports"
     // Chemin vers le répertoire contenant les fichiers SoapUI
     def soapuiDir = "${appDir}testsoapui"
     // Créer le répertoire pour les rapports s'il n'existe pas
@@ -24,7 +24,9 @@ def call() {
     // Exécuter SoapUI pour chaque fichier trouvé
     soapuiFiles.each { file ->
         echo "Exécution des tests SoapUI pour ${file}..."
-        sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -f ${resultsDir} ${file}"
+        sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -f ${WORKSPACE}/result  ${file}"
+        junit 'result/*.xml'
+
     }
         return true
     }    
