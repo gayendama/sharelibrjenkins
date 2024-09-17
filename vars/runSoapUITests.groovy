@@ -3,7 +3,7 @@ def call() {
     def appDir = "${env.WORKSPACE}/" 
     def resultsDir = "/home/ndama/soapui-reports"
     // Chemin vers le répertoire contenant les fichiers SoapUI
-    def soapuiDir = "${appDir}testsoapui"
+    def soapuiDir = "/home/ndama/testsoapui"
     // Créer le répertoire pour les rapports s'il n'existe pas
     sh "mkdir -p ${resultsDir}"
     // Vérifier si le répertoire de tests existe
