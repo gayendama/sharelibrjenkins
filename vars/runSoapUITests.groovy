@@ -20,12 +20,22 @@ def call() {
     }
 
     echo "Exécution des fichiers SoapUI trouvés : ${soapuiFiles.join(', ')}"
-
+      def testFailed = false
     // Exécuter SoapUI pour chaque fichier trouvé
     soapuiFiles.each { file ->
         echo "Exécution des tests SoapUI pour ${file}..."
-        sh "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -f ${WORKSPACE}/result  ${file}"
+        def soapuiResult = sh(script: "/opt/SmartBear/SoapUI-5.7.2/bin/testrunner.sh -r -j -f ${WORKSPACE}/result ${file}", returnStatus: true)
         junit 'result/*.xml'
+        if (soapuiResult != 0) {
+                echo "Un test a échoué pour le fichier ${file}."
+                testFailed = true  // Marquer un échec
+        }
+        if (testFailed) {
+            currentBuild.result = 'UNSTABLE'
+            echo "Certaines assertions ont échoué. Le pipeline est marqué comme instable."
+        } else {
+            echo "Tous les tests SoapUI ont réussi."
+        }
 
     }
         return true
