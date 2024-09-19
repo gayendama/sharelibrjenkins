@@ -14,7 +14,7 @@ def call() {
     // Trouver tous les fichiers .xml dans le répertoire de tests et les exécuter
     def jmeterFiles = sh(script: "find ${jmeteriDir} -name '*.xml'", returnStdout: true).trim().split('\n')
 
-    if (sjmeterFiles.size() == 0 || jmeterFiles[0] == "") {
+    if (jmeterFiles.size() == 0 || jmeterFiles[0] == "") {
         echo "Aucun fichier jmeter trouvé dans ${jmeteriDir}."
         return false
     }
