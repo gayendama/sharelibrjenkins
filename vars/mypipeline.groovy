@@ -37,14 +37,19 @@ def call() {
     if (testsRun) {
             stage('deploy') {
                 echo "Déploiement en cours..."
-                // Code de déploiement ici
             }
         } else {
             echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
         }
-   // stage('Run JMeter Tests') {
-     // testDePerformance()
-    // }          
+    stage('Run JMeter Tests') {
+              def testsRun = runJmeter()
+              if (!testsRun) {
+              echo "Les tests Jmeter n'ont pas été exécutés"
+              currentBuild.result = 'UNSTABLE'
+              }
+        
+          }
+         
 /*
     stage('Scan vurlnerablite') {
            scanVulnerabilities(p.DOCKER_ID, p.IMAGE_NAME)
