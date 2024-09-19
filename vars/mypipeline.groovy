@@ -42,7 +42,7 @@ def call() {
             echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
         }
     stage('Run JMeter Tests') {
-              def testsRun = runJmeter()
+              def testsRun = testDePerformance()
               if (!testsRun) {
               echo "Les tests Jmeter n'ont pas été exécutés"
               currentBuild.result = 'UNSTABLE'
