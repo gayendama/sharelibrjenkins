@@ -5,7 +5,7 @@ def call() {
     // Chemin vers le répertoire contenant les fichiers jmeter
     def jmeteriDir = "/home/ndama/testjmeter"
     // Créer le répertoire pour les rapports s'il n'existe pas
-    sh "mkdir -p ${resultsDir}"
+    //sh "mkdir -p ${resultsDir}"
     // Vérifier si le répertoire de tests existe
     if (!fileExists(jmeteriDir)) {
     echo "Le répertoire des tests jmeter ${jmeteriDir} n'existe pas, aucun test ne sera effectué."
