@@ -1,38 +1,43 @@
 #!/usr/bin/env groovy
 def call() {
     def appDir = "${env.WORKSPACE}/" 
-   
-   
-    def jmxFile = sh(script: "ls ${appDir}*.jmx | head -n 1", returnStdout: true).trim()
-
-     if (jmxFile) {
-        echo "Fichier .jmx trouvé : ${jmxFile}"
-        sh "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${jmxFile} -l results.jtl"
-        perfReport 'results.jtl'
-    } else {
-        echo "Aucun fichier .jmx trouvé dans le répertoire ${appDir}, aucun test ne sera exécuté."
-    }
- 
-    /*
-    def jmxDir = "${appDir}/testjmeter"
-
+    //def resultsDir = "/home/ndama/jmeter-reports"
+    // Chemin vers le répertoire contenant les fichiers jmeter
+    def jmeteriDir = "/home/ndama/testjmeter"
+    // Créer le répertoire pour les rapports s'il n'existe pas
+    sh "mkdir -p ${resultsDir}"
     // Vérifier si le répertoire de tests existe
-    if (!fileExists(jmxDir)) {
-        error "Le répertoire des tests Jmter ${jmxDir} n'existe pas."
+    if (!fileExists(jmeteriDir)) {
+    echo "Le répertoire des tests jmeter ${jmeteriDir} n'existe pas, aucun test ne sera effectué."
+    return false
+} else {
+    // Trouver tous les fichiers .xml dans le répertoire de tests et les exécuter
+    def jmeterFiles = sh(script: "find ${jmeteriDir} -name '*.xml'", returnStdout: true).trim().split('\n')
+
+    if (sjmeterFiles.size() == 0 || jmeterFiles[0] == "") {
+        echo "Aucun fichier jmeter trouvé dans ${jmeteriDir}."
+        return false
     }
-   
-    def jmxFiles = sh(script: "find ${jmxDir} -name '*.jmx'", returnStdout: true).trim().split('\n')
-    if (jmxFiles.size() == 0) {
-        echo "Aucun fichier SoapUI trouvé dans ${jmxDir}."
-        return
+
+    echo "Exécution des fichiers jmeter trouvés : ${jmeterFiles.join(', ')}"
+      def testFailed = false
+    // Exécuter jmeter pour chaque fichier trouvé
+    jmeterFiles.each { file ->
+        echo "Exécution des tests jmeter pour ${file}..."
+        def jmeterResult = sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${jmxFile} -l results.jtl")
+        perfReport 'results.jtl'
+        if (jmeterResult != 0) {
+                echo "Un test a échoué pour le fichier ${file}."
+                testFailed = true  // Marquer un échec
+        }
+        if (testFailed) {
+            currentBuild.result = 'UNSTABLE'
+            echo "Certaines tests ont échoué. Le pipeline est marqué comme instable."
+        } else {
+            echo "Tous les tests jmeter ont réussi."
+        }
+
     }
-      // Exécuter JMeter pour chaque fichier trouvé
-    jmxFiles.each { file ->
-        echo "Exécution des tests JMeter pour ${file}..."
-        sh "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter -n -t ${file} -l results.jtl"
-        
-        // Générer un rapport de performance
-        perfReport "results.jtl"
-    }
-    */
+        return true
+    }    
 }
