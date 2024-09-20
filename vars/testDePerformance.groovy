@@ -3,7 +3,7 @@ def call() {
     def appDir = "${env.WORKSPACE}/" 
     //def resultsDir = "/home/ndama/jmeter-reports"
     // Chemin vers le répertoire contenant les fichiers jmeter
-    def jmeteriDir = "/home/ndama/testjmeter"
+    def jmeteriDir = "/home/ndama/testjmeter/"
     // Créer le répertoire pour les rapports s'il n'existe pas
     //sh "mkdir -p ${resultsDir}"
     // Vérifier si le répertoire de tests existe
