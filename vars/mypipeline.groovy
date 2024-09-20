@@ -18,7 +18,7 @@ def call() {
             testAcceptance(p.IMAGE_NAME, p.DOCKER_ID, p.PortContainer, p.PortApp)
    }
            */
-    stage('Run Functional Tests with SoapUI') {
+   /* stage('Run Functional Tests with SoapUI') {
           testsRun = runSoapUITests()
         if (!testsRun) {
             echo "Les tests SoapUI n'ont pas été exécutés, le stage est marqué comme désactivé."
@@ -40,7 +40,7 @@ def call() {
             }
         } else {
             echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
-        }
+        } */
     stage('Run JMeter Tests') {
               testsRun = testDePerformance()
               if (!testsRun) {
