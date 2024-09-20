@@ -24,7 +24,7 @@ def call() {
     // Exécuter jmeter pour chaque fichier trouvé
     jmeterFiles.each { file ->
         echo "Exécution des tests jmeter pour ${file}..."
-        def jmeterResult = sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${jmxFiles} -l results.jtl")
+        def jmeterResult = sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${file} -l results.jtl")
         perfReport 'results.jtl'
         if (jmeterResult != 0) {
                 echo "Un test a échoué pour le fichier ${file}."
