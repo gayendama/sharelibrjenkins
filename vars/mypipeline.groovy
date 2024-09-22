@@ -18,7 +18,7 @@ def call() {
             testAcceptance(p.IMAGE_NAME, p.DOCKER_ID, p.PortContainer, p.PortApp)
    }
            */
-   /* stage('Run Functional Tests with SoapUI') {
+    stage('Run Functional Tests with SoapUI') {
           testsRun = runSoapUITests()
         if (!testsRun) {
             echo "Les tests SoapUI n'ont pas été exécutés, le stage est marqué comme désactivé."
@@ -26,7 +26,7 @@ def call() {
             return
             
         }
-    } 
+    } /*
         stage('Deploy') {
         if (false) {  // Désactive cette étape en mettant la condition à false
             echo "Déploiement"
