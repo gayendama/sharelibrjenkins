@@ -14,7 +14,7 @@ def call() {
     // Trouver tous les fichiers .xml dans le répertoire de tests et les exécuter
     def soapuiFiles = sh(script: "find ${soapuiDir} -name '*.xml'", returnStdout: true).trim().split('\n')
 
-    if (soapuiFiles.size() == 0) {
+    if (soapuiFiles.size() == 0 || soapuiFiles[0] == ""){
         echo "Aucun fichier SoapUI trouvé dans ${soapuiDir}."
         return false
     }
