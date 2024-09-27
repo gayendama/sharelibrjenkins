@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
     node {
-        def testsRun = false
+       // def testsRun = false
     stage('Checkout') {
         checkout scm
     }
@@ -19,7 +19,7 @@ def call() {
    }
            */
     stage('Run Functional Tests with SoapUI') {
-          testsRun = runSoapUITests()
+          def testsRun = runSoapUITests()
         if (!testsRun) {
             echo "Les tests SoapUI n'ont pas été exécutés, le stage est marqué comme désactivé."
             currentBuild.result = 'UNSTABLE'
@@ -42,7 +42,7 @@ def call() {
             echo "Le déploiement est ignoré car les tests SoapUI n'ont pas été exécutés."
         } */
     stage('Run JMeter Tests') {
-              testsRun = testDePerformance()
+              def testsRun = testDePerformance()
               if (!testsRun) {
               echo "Les tests Jmeter n'ont pas été exécutés"
               currentBuild.result = 'UNSTABLE'
