@@ -24,7 +24,7 @@ def call() {
     // Exécuter jmeter pour chaque fichier trouvé
     jmeterFiles.each { file ->
         echo "Exécution des tests jmeter pour ${file}..."
-        sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter -n -t ${fichier} -l results.jtl", returnStatus: true)
+        sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter -n -t ${file} -l results.jtl", returnStatus: true)
     
     // Ajouter les rapports de performance avec les seuils configurés
     perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'results.jtl'
