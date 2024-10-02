@@ -24,20 +24,12 @@ def call() {
     // Exécuter jmeter pour chaque fichier trouvé
     jmeterFiles.each { file ->
         echo "Exécution des tests jmeter pour ${file}..."
-        def jmeterResult = sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter  -n -t ${file} -l results.jtl")
-        perfReport 'results.jtl'
-        if (jmeterResult != 0) {
-                echo "Un test a échoué pour le fichier ${file}."
-                testFailed = true  // Marquer un échec
-        }
-        if (testFailed) {
-            currentBuild.result = 'UNSTABLE'
-            echo "Certaines tests ont échoué. Le pipeline est marqué comme instable."
-        } else {
-            echo "Tous les tests jmeter ont réussi."
-        }
+        sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter -n -t ${fichier} -l results.jtl", returnStatus: true)
+    
+    // Ajouter les rapports de performance avec les seuils configurés
+    perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'results.jtl'
+}
 
-    }
         return true
     }    
 }
