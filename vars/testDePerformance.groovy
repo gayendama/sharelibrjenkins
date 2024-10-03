@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
     def jmeterDir = "/home/ndama/testjmeter"
-    def jmeterFiles = findTestFiles(jmeterDir, "jmx")
+    def jmeterFiles = findCheckFiles(jmeterDir, "jmx")
 
     if (jmeterFiles.size() == 0) {
         return false
