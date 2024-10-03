@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 def call() {
     def soapuiDir = "/home/ndama/testsoapui"
-    def soapuiFiles = findTestFiles(soapuiDir, "xml")
+    def soapuiFiles = findCheckFiles(soapuiDir, "xml")
     
     if (soapuiFiles.size() == 0) {
         return false
