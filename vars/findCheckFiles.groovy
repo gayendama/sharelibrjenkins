@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-def findTestFiles(directory, fileExtension) {
+def call(directory, fileExtension) {
     if (!fileExists(directory)) {
         echo "Le répertoire ${directory} n'existe pas, aucun test ne sera effectué."
         return []
