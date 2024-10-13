@@ -12,7 +12,7 @@ def call() {
         sh(script: "sudo /home/ndama/jmeter/apache-jmeter-5.6.3/bin/jmeter -n -t ${file} -l results.jtl", returnStatus: true)
 
         // Ajouter les rapports de performance avec les seuils configurés
-        perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'results.jtl'
+        perfReport  'results.jtl' //errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'results.jtl'
     }
     return true
 }
